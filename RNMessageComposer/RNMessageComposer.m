@@ -173,28 +173,30 @@ RCT_EXPORT_METHOD(composeMessageWithArgs:(NSDictionary *)args callback:(RCTRespo
     RCTAssert(index != NSNotFound, @"Dismissed view controller was not recognised");
     RCTResponseSenderBlock callback = composeCallbacks[index];
 
-    switch (result) {
-        case MessageComposeResultCancelled:
-            callback(@[@"cancelled"]);
-            break;
-        case MessageComposeResultFailed:
-            callback(@[@"failed"]);
-            break;
-        case MessageComposeResultSent:
-            callback(@[@"sent"]);
-            break;
-        default:
-            break;
-    }
-
     UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
     while (vc.presentedViewController && vc != controller) {
         vc = vc.presentedViewController;
     }
-    [vc dismissViewControllerAnimated:dismissAnimated completion:nil];
-
+    [vc dismissViewControllerAnimated:dismissAnimated completion:^{
+        switch (result) {
+            case MessageComposeResultCancelled:
+                callback(@[@"cancelled"]);
+                break;
+            case MessageComposeResultFailed:
+                callback(@[@"failed"]);
+                break;
+            case MessageComposeResultSent:
+                callback(@[@"sent"]);
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    
     [composeViews removeObjectAtIndex:index];
     [composeCallbacks removeObjectAtIndex:index];
+    
 }
 
 @end
