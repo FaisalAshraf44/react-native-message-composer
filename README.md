@@ -1,4 +1,4 @@
-## 08/01/2017 - This project is no longer actively maintained. It will remain here so it can still be used but there will be no further updates or bug fixes. It likely needs a new major version for the recent changes in RN 0.40. If another user wants to consider taking ownership of the repo then please contact me
+## 08/01/2017 - This project has not been updated recently... It will remain here so it can still be used but there will be no further updates or bug fixes. It likely needs a new major version for the recent changes in RN 0.40. If another user wants to consider taking ownership of the repo then please contact me
 
 # react-native-message-composer
 
@@ -145,7 +145,6 @@ Composer.composeMessageWithArgs(
 
 ## TODO
 
-- [x] Add support for message attachments
 - [ ] Fix issue with a second MFMessageComposeViewController seeming to be present if rotate device whilst MFMessageComposeViewController is open
 - [ ] Look at implementing MFMessageComposeViewControllerTextMessageAvailabilityDidChangeNotification to listen for changes to the MFMessageComposeViewController `canSendText` class method
 
